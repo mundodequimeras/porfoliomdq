@@ -129,7 +129,10 @@ class MDQ_Admin_About
 						<i class="fas fa-history" style="color: #6366f1;"></i> <?php _e('Historial de Cambios', 'porfoliomdq'); ?>
 					</h3>
 					<div class="mdq-version-note" style="margin-bottom: 20px;">
-						<strong style="color: #6366f1;">v1.4.0</strong> - <?php _e('Personalización de Diseño: Se han añadido selectores de color de fondo y controles de márgenes superior/inferior para una integración perfecta con cualquier tema.', 'porfoliomdq'); ?>
+						<strong style="color: #6366f1;">v1.4.1</strong> - <?php _e('Corrección de diseño: Se ha ajustado el color de fondo predeterminado a blanco para evitar contrastes no deseados y se ha forzado la recarga de activos en producción.', 'porfoliomdq'); ?>
+					</div>
+					<div class="mdq-version-note" style="margin-bottom: 20px;">
+						<strong style="color: #6366f1;">v1.4.0</strong> - <?php _e('Personalización de Diseño: Se han añadido selectores de color de fondo y controles de márgenes superior/inferior.', 'porfoliomdq'); ?>
 					</div>
 					<div class="mdq-version-note" style="margin-bottom: 20px;">
 						<strong style="color: #6366f1;">v1.3.3</strong> - <?php _e('Consolidación de Configuración: Se ha eliminado el formulario redundante del Dashboard, centralizando todos los controles en Proyectos > Configuración.', 'porfoliomdq'); ?>

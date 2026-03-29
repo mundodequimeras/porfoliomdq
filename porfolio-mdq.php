@@ -3,7 +3,7 @@
  * Plugin Name: Porfolio MDQ
  * Plugin URI: https://mundodequimeras.com
  * Description: Un plugin profesional para gestionar el porfolio con categorías, lenguajes e iconos.
- * Version: 1.4.0
+ * Version: 1.4.1
  * Requires at least: 5.8
  * Requires PHP: 7.4
  * Tested up to: 6.4
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Define Plugin Constants
 define( 'MDQ_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MDQ_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'MDQ_VERSION', '1.4.0' );
+define( 'MDQ_VERSION', '1.4.1' );
 
 require_once plugin_dir_path( __FILE__ ) . 'includes/class-mdq-admin-about.php';
 new MDQ_Admin_About();
@@ -58,14 +58,14 @@ function mdq_enqueue_assets() {
     wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' );
     
     // Main Plugin Styles
-    wp_enqueue_style( 'mdq-porfolio-style', MDQ_PLUGIN_URL . 'assets/css/style.css', array(), '1.0.0' );
+    wp_enqueue_style( 'mdq-porfolio-style', MDQ_PLUGIN_URL . 'assets/css/style.css', array(), MDQ_VERSION );
     
     // GLightbox for Gallery
     wp_enqueue_style( 'glightbox-css', 'https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css' );
     wp_enqueue_script( 'glightbox-js', 'https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js', array(), '1.0.1', true );
     
     // Filtering Logic
-    wp_enqueue_script( 'mdq-porfolio-filter', MDQ_PLUGIN_URL . 'assets/js/filter.js', array('jquery'), '1.0.0', true );
+    wp_enqueue_script( 'mdq-porfolio-filter', MDQ_PLUGIN_URL . 'assets/js/filter.js', array('jquery'), MDQ_VERSION, true );
     wp_add_inline_script( 'mdq-porfolio-filter', 'const mdqData = ' . json_encode( array(
         'ajax_url' => admin_url( 'admin-ajax.php' ),
         'nonce'    => wp_create_nonce( 'mdq_portfolio_nonce' ),

@@ -87,7 +87,7 @@ class MDQ_Settings {
                     <tr valign="top">
 						<th scope="row"><?php _e( 'Color de Fondo', 'porfoliomdq' ); ?></th>
 						<td>
-                            <input type="text" name="mdq_bg_color" value="<?php echo esc_attr( get_option( 'mdq_bg_color', '#f8fafc' ) ); ?>" class="mdq-color-picker" />
+                            <input type="text" name="mdq_bg_color" value="<?php echo esc_attr( get_option( 'mdq_bg_color', '#ffffff' ) ); ?>" class="mdq-color-picker" />
                             <p class="description"><?php _e( 'Define el color de fondo de la sección principal del portafolio.', 'porfoliomdq' ); ?></p>
                         </td>
 					</tr>

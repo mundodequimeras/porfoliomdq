@@ -74,13 +74,12 @@ class MDQ_Shortcode {
 			'hide_empty' => true,
 		) );
 
-        $bg_color    = get_option( 'mdq_bg_color', '#f8fafc' );
+        $bg_color    = get_option( 'mdq_bg_color', '#ffffff' );
         $margin_top  = get_option( 'mdq_margin_top', '40' );
         $margin_bot  = get_option( 'mdq_margin_bottom', '60' );
 
         $dynamic_style = sprintf(
-            'background-color: %s; margin-top: %spx; margin-bottom: %spx;',
-            esc_attr( $bg_color ),
+            'background-color: transparent !important; margin-top: %spx; margin-bottom: %spx; padding: 40px 0;',
             intval( $margin_top ),
             intval( $margin_bot )
         );
