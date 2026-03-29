@@ -32,6 +32,10 @@ require_once MDQ_PLUGIN_DIR . 'includes/class-mdq-project-meta.php';
 require_once MDQ_PLUGIN_DIR . 'includes/class-mdq-shortcode.php';
 require_once MDQ_PLUGIN_DIR . 'includes/class-mdq-block-registry.php';
 require_once MDQ_PLUGIN_DIR . 'includes/class-mdq-settings.php';
+require_once MDQ_PLUGIN_DIR . 'includes/class-mdq-updater.php';
+
+// Initialize Updater
+new MDQ_Updater( __FILE__, 'mundodequimeras/porfoliomdq' );
 
 /**
  * Register Elementor Widget
