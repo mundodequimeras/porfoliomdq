@@ -94,12 +94,24 @@ class MDQ_Updater {
 		$local_version  = MDQ_VERSION;
 
 		if ( version_compare( $remote_version, $local_version, '>' ) ) {
+			$package = $release->zipball_url;
+
+			// Intentar encontrar un archivo "porfoliomdq.zip" en los assets manuales para mayor estabilidad
+			if ( ! empty( $release->assets ) ) {
+				foreach ( $release->assets as $asset ) {
+					if ( 'porfoliomdq.zip' === $asset->name ) {
+						$package = $asset->browser_download_url;
+						break;
+					}
+				}
+			}
+
 			$obj              = new stdClass();
 			$obj->slug        = 'porfoliomdq';
 			$obj->plugin      = $this->plugin_slug;
 			$obj->new_version = $remote_version;
 			$obj->url         = $release->html_url;
-			$obj->package     = $release->zipball_url; // WordPress descarga el ZIP desde aquí
+			$obj->package     = $package; // WordPress descarga el ZIP desde aquí
 			$obj->tested      = '6.4'; // Versión máxima probada
 			$obj->requires    = '5.8';
 
@@ -123,13 +135,25 @@ class MDQ_Updater {
 				return $result;
 			}
 
+			$download_link = $release->zipball_url;
+
+			// Intentar encontrar un archivo "porfoliomdq.zip" en los assets manuales para mayor estabilidad
+			if ( ! empty( $release->assets ) ) {
+				foreach ( $release->assets as $asset ) {
+					if ( 'porfoliomdq.zip' === $asset->name ) {
+						$download_link = $asset->browser_download_url;
+						break;
+					}
+				}
+			}
+
 			$res              = new stdClass();
 			$res->name        = 'Porfolio MDQ';
 			$res->slug        = 'porfoliomdq';
 			$res->version     = ltrim( $release->tag_name, 'v' );
 			$res->author      = '<a href="https://mundodequimeras.com">Diego Lazo (Mundo de Quimeras)</a>';
 			$res->homepage    = 'https://mundodequimeras.com';
-			$res->download_link = $release->zipball_url;
+			$res->download_link = $download_link;
 			$res->tested      = '6.4';
 			$res->requires    = '5.8';
 			$res->icons       = array(
