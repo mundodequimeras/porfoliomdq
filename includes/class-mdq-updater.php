@@ -99,6 +99,8 @@ class MDQ_Updater {
 			$obj->new_version = $remote_version;
 			$obj->url         = $release->html_url;
 			$obj->package     = $release->zipball_url; // WordPress descarga el ZIP desde aquí
+			$obj->tested      = '6.4'; // Versión máxima probada
+			$obj->requires    = '5.8';
 
 			$transient->response[ $this->plugin_slug ] = $obj;
 		}
@@ -127,6 +129,8 @@ class MDQ_Updater {
 			$res->author      = '<a href="https://mundodequimeras.com">Diego Lazo (Mundo de Quimeras)</a>';
 			$res->homepage    = 'https://mundodequimeras.com';
 			$res->download_link = $release->zipball_url;
+			$res->tested      = '6.4';
+			$res->requires    = '5.8';
 			$res->sections    = array(
 				'description' => 'Un plugin profesional para gestionar el porfolio con categorías, lenguajes e iconos.',
 				'changelog'   => $release->body ? nl2br( $release->body ) : 'Sin registro de cambios disponible.',
