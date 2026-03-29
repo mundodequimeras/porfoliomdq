@@ -32,6 +32,7 @@ class MDQ_Updater {
 		// Hooks de WordPress para actualizaciones
 		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'check_for_updates' ) );
 		add_filter( 'plugins_api', array( $this, 'get_plugin_info' ), 20, 3 );
+		add_filter( 'upgrader_source_selection', array( $this, 'fix_source_folder' ), 10, 4 );
 	}
 
 	/**
@@ -148,5 +149,35 @@ class MDQ_Updater {
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Corrige el nombre de la carpeta de origen descargada de GitHub.
+	 * GitHub suele añadir el nombre de usuario y el tag al nombre de la carpeta (ej. porfoliomdq-main).
+	 * Esto asegura que WordPress la renombre a 'porfoliomdq' antes de moverla a la carpeta definitiva.
+	 */
+	public function fix_source_folder( $source, $remote_source, $upgrader, $hook_extra ) {
+		// Solo actuamos si el plugin que se está actualizando es el nuestro
+		if ( ! isset( $hook_extra['plugin'] ) || $hook_extra['plugin'] !== $this->plugin_slug ) {
+			return $source;
+		}
+
+		$source_name = basename( $source );
+		$correct_name = 'porfoliomdq';
+
+		if ( $source_name === $correct_name ) {
+			return $source;
+		}
+
+		// Definir la nueva ruta
+		$new_source = trailingslashit( dirname( $source ) ) . $correct_name;
+
+		// Realizar el renombrado usando la API de archivos de WordPress
+		global $wp_filesystem;
+		if ( $wp_filesystem->move( $source, $new_source ) ) {
+			return $new_source;
+		}
+
+		return $source;
 	}
 }
