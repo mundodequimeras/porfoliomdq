@@ -33,6 +33,7 @@ class MDQ_Updater {
 		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'check_for_updates' ) );
 		add_filter( 'plugins_api', array( $this, 'get_plugin_info' ), 20, 3 );
 		add_filter( 'upgrader_source_selection', array( $this, 'fix_source_folder' ), 10, 4 );
+		add_action( 'in_plugin_update_message-' . $this->plugin_slug . '/porfolio-mdq.php', array( $this, 'show_manual_download_link' ), 10, 2 );
 	}
 
 	/**
@@ -203,5 +204,27 @@ class MDQ_Updater {
 		}
 
 		return $source;
+	}
+
+	/**
+	 * Muestra un enlace de descarga manual en la notificación de actualización de WordPress.
+	 * Esto es útil si el servidor tiene problemas de permisos para la actualización automática.
+	 */
+	public function show_manual_download_link( $plugin_data, $response ) {
+		if ( empty( $response->package ) ) {
+			return;
+		}
+
+		$download_url = $response->package;
+
+		echo sprintf(
+			' <span style="display:inline-block; margin-top:5px; background:#e5f3ff; padding:4px 10px; border-radius:4px; border:1px solid #0073aa;">
+				<a href="%s" style="text-decoration:none; font-weight:bold; color:#005a87;">
+					⬇️ Descargar v%s para instalación manual
+				</a> (En caso de fallo en la actualización automática)
+			  </span>',
+			esc_url( $download_url ),
+			esc_html( $response->new_version )
+		);
 	}
 }

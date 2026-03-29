@@ -3,7 +3,7 @@
  * Plugin Name: Porfolio MDQ
  * Plugin URI: https://mundodequimeras.com
  * Description: Un plugin profesional para gestionar el porfolio con categorías, lenguajes e iconos.
- * Version: 1.4.1
+ * Version: 1.5.0
  * Requires at least: 5.8
  * Requires PHP: 7.4
  * Tested up to: 6.4
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Define Plugin Constants
 define( 'MDQ_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MDQ_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'MDQ_VERSION', '1.4.1' );
+define( 'MDQ_VERSION', '1.5.0' );
 
 require_once plugin_dir_path( __FILE__ ) . 'includes/class-mdq-admin-about.php';
 new MDQ_Admin_About();
