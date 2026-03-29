@@ -131,6 +131,14 @@ class MDQ_Updater {
 			$res->download_link = $release->zipball_url;
 			$res->tested      = '6.4';
 			$res->requires    = '5.8';
+			$res->icons       = array(
+				'1x' => 'https://raw.githubusercontent.com/mundodequimeras/porfoliomdq/main/assets/icon.png',
+				'2x' => 'https://raw.githubusercontent.com/mundodequimeras/porfoliomdq/main/assets/icon.png',
+			);
+			$res->banners     = array(
+				'low'  => 'https://raw.githubusercontent.com/mundodequimeras/porfoliomdq/main/assets/banner.png',
+				'high' => 'https://raw.githubusercontent.com/mundodequimeras/porfoliomdq/main/assets/banner.png',
+			);
 			$res->sections    = array(
 				'description' => 'Un plugin profesional para gestionar el porfolio con categorías, lenguajes e iconos.',
 				'changelog'   => $release->body ? nl2br( $release->body ) : 'Sin registro de cambios disponible.',
